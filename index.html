@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signature Generator v1.7</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1>Email Signature Generator v1.8</h1>
+                    <p>Create professional email signatures for Outlook.</p>
+                </div>
+                <div style="text-align: right; background-color: rgba(255,255,255,0.2); padding: 8px 12px; border-radius: 4px;">
+                    <span style="color: #fff; margin-right: 8px;">Version:</span>
+                    <a href="/" style="color: #fff; font-weight: bold; text-decoration: none;">Standard</a> | 
+                    <a href="./apple-version/index.html" style="color: #fff; text-decoration: none;">Apple</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="build">Build Signature</button>
+            <button class="tab-btn" data-tab="saved">Saved Signatures</button>
+            <button class="tab-btn" data-tab="instructions">Instructions</button>
+        </div>
+        
+        <!-- Build Signature Tab -->
+        <div class="tab-content active" id="build-tab">
+            <div class="form-container">
+                <div class="form-section">
+                    <h2>Create Your Signature</h2>
+                    
+                    <h3>Select Company</h3>
+                    <div class="company-selector">
+                        <button type="button" class="company-btn" id="indiana-btn">Indiana CWH</button>
+                        <button type="button" class="company-btn" id="national-btn">National Pride</button>
+                        <button type="button" class="company-btn" id="ohio-btn">Ohio CWH</button>
+                        
+                        <!-- Hidden select for backend compatibility -->
+                        <select id="company-dropdown" name="company" style="display: none;">
+                            <option value="indiana">Indiana Car Wash Holdings</option>
+                            <option value="ohio">Ohio Car Wash Holdings</option>
+                            <option value="national">National Pride Equipment</option>
+                        </select>
+                    </div>
+                    
+                    <h3>Personal Information</h3>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title" placeholder="Marketing Director" required>
+                    </div>
+                    <input type="hidden" id="address" value="905 Hickory Ln, Mansfield, OH 44905">
+
+                    <h3>Contact Details</h3>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="jane.doe@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="office-phone">Office Phone</label>
+                        <input type="text" id="office-phone" value="(419) 567-6133" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="extension">Extension</label>
+                        <input type="text" id="extension" placeholder="123">
+                    </div>
+                    <div class="form-group">
+                        <label for="cell-phone">Cell Phone</label>
+                        <input type="text" id="cell-phone" placeholder="(555) 123-4567">
+                    </div>
+                    
+                    <div class="options-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="include-cell">
+                            <label for="include-cell">Include Cell Phone</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="include-address" checked>
+                            <label for="include-address">Include Address</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="include-disclaimer" checked>
+                            <label for="include-disclaimer">Include Disclaimer</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview-section">
+                    <h2>Signature Preview</h2>
+                    <div class="preview-container" id="signature-preview">
+                        <div class="signature-loading">Fill in the form to preview your signature</div>
+                    </div>
+                    <div class="actions">
+                        <button id="reset-form" class="btn secondary">Reset Form</button>
+                        <button id="copy-signature" class="btn secondary">Copy to Clipboard</button>
+                        <button id="save-signature" class="btn primary">Save Signature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View Saved Signatures Tab -->
+        <div class="tab-content" id="saved-tab">
+            <h2>Saved Signatures</h2>
+            <div id="saved-signatures" class="saved-signatures">
+                <p class="empty-state">No saved signatures yet. Create one in the Build Signature tab.</p>
+            </div>
+        </div>
+        
+        <!-- Instructions Tab -->
+        <div class="tab-content" id="instructions-tab">
+            <h2>How to Use the Email Signature Generator</h2>
+            
+            <div class="instruction-section">
+                <h3>Creating a Signature</h3>
+                <ol>
+                    <li>Go to the <strong>Build Signature</strong> tab.</li>
+                    <li>Select your company (Indiana, Ohio, or National).</li>
+                    <li>Fill in your personal information.</li>
+                    <li>Toggle options for cell phone, address, and disclaimer as needed.</li>
+                    <li>Preview your signature in real-time.</li>
+                    <li>Click <strong>Save Signature</strong> to store it locally.</li>
+                </ol>
+            </div>
+            
+            <div class="instruction-section">
+                <h3>Managing Saved Signatures</h3>
+                <ol>
+                    <li>Go to the <strong>View Saved Signatures</strong> tab.</li>
+                    <li>You'll see a list of all your saved signatures.</li>
+                    <li>Click <strong>Edit</strong> to modify a signature.</li>
+                    <li>Click <strong>Delete</strong> to remove a signature.</li>
+                    <li>Click <strong>Copy</strong> to copy the HTML to your clipboard.</li>
+                </ol>
+            </div>
+            
+            <div class="instruction-section">
+                <h3>Adding Your Signature to Outlook</h3>
+                <ol>
+                    <li>Create or select a signature and click <strong>Copy to Clipboard</strong>.</li>
+                    <li>Open Outlook and go to <strong>File</strong> > <strong>Options</strong> > <strong>Mail</strong> > <strong>Signatures</strong>.</li>
+                    <li>Click <strong>New</strong> to create a new signature and give it a name.</li>
+                    <li>Position your cursor in the editing area below.</li>
+                    <li>Paste your copied signature using <strong>Ctrl+V</strong>. You should see the fully formatted signature appear.</li>
+                    <li>Click <strong>Save</strong> then <strong>OK</strong> to finish.</li>
+                </ol>
+                <p><strong>Important:</strong> When copying from this tool, it copies the rendered HTML content, not the raw HTML code. This allows you to paste directly into Outlook's signature editor while maintaining all formatting.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Vibe Coded by Keith Groben</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
