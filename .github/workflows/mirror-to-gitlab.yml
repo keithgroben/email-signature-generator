@@ -1,0 +1,29 @@
+name: Mirror to GitLab
+
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push to GitLab
+        env:
+          GL_TOKEN: ${{ secrets.GITLAB_MIRROR_TOKEN }}
+        run: |
+          set -euo pipefail
+          case "${{ github.repository_owner }}" in
+            Wayfinder-Digital) GL_OWNER=wayfinder-digital ;;
+            keithgroben)        GL_OWNER=keithgroben ;;
+            *) echo "Unknown owner: ${{ github.repository_owner }}"; exit 1 ;;
+          esac
+          REPO="${{ github.event.repository.name }}"
+          git remote add gitlab "https://oauth2:${GL_TOKEN}@gitlab.com/${GL_OWNER}/${REPO}.git"
+          git push --force --all gitlab
+          git push --force --tags gitlab
